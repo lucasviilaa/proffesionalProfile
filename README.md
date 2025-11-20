@@ -1,2 +1,0 @@
-# proffesionalProfile
-My proffesional Profile
