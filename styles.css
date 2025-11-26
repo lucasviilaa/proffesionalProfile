@@ -2,23 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-  /* Paleta de colores moderna y profesional */
-  --primary: #003366;        /* Azul Oscuro (Institucional) */
-  --accent: #0056b3;         /* Azul Brillante (Interacción) */
-  --bg-body: #f0f2f5;        /* Gris muy claro para fondo */
-  --bg-card: #ffffff;        /* Blanco para tarjetas */
-  --text-main: #1f2937;      /* Gris oscuro para lectura */
-  --text-muted: #6b7280;     /* Gris medio para subtítulos */
-  
-  /* Sombras y Bordes */
+  --primary: #003366;
+  --accent: #0056b3;
+  --bg-body: #f0f2f5;
+  --bg-card: #ffffff;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
   --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
   --radius: 12px;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   font-family: 'Inter', sans-serif;
@@ -29,9 +24,9 @@ body {
   line-height: 1.6;
 }
 
-/* --- Navegación Sticky con efecto Glass --- */
+/* --- Navegación --- */
 nav {
-  background: rgba(255, 255, 255, 0.95); /* Un poco más opaco para mejor lectura */
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   position: sticky;
   top: 0;
@@ -67,40 +62,61 @@ nav a {
   transition: color 0.2s ease;
 }
 
-nav a:hover, nav a.active {
+nav a:hover, nav a[aria-current="page"] {
   color: var(--accent);
   font-weight: 600;
 }
 
 /* --- Layout Principal --- */
 main {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 2rem auto;
   padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  min-height: 80vh; /* Asegura que el footer no suba si hay poco contenido */
+  min-height: 80vh;
 }
 
-/* --- Hero Section (Perfil) --- */
+/* --- Hero --- */
 .hero-title {
   margin: 0.5rem 0;
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
   color: var(--primary);
   font-weight: 700;
 }
 
 .hero-subtitle {
   color: var(--text-muted);
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   margin-bottom: 1.5rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* --- Secciones Generales (Tarjetas) --- */
+.hero-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+.hero-card img {
+  max-width: 250px;
+  border-radius: var(--radius);
+}
+
+@media (min-width: 900px) {
+  .hero-card {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+  }
+}
+
+/* --- Secciones --- */
 section {
   background: var(--bg-card);
   padding: 2rem;
@@ -124,71 +140,9 @@ h2 {
   margin-bottom: 1rem;
 }
 
-h3 {
-  color: var(--text-main);
-  font-size: 1.1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.8rem;
-}
+h3 { color: var(--text-main); }
 
-.text-center {
-  text-align: center;
-}
-
-/* --- Portfolio Styles (Proyectos) --- */
-.project-objective {
-  font-weight: 500;
-  color: var(--text-muted);
-  font-style: italic;
-  margin-bottom: 1rem;
-}
-
-.tags-container {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 1.5rem;
-}
-
-.tag {
-  background: #e3eafc; /* Azul muy suave */
-  color: var(--primary);
-  padding: 4px 12px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  border: 1px solid rgba(0, 51, 102, 0.1);
-}
-
-/* Listas personalizadas para los proyectos */
-.custom-list {
-  list-style-type: none;
-  padding: 0;
-}
-
-.custom-list-item {
-  margin-bottom: 12px;
-  padding-left: 25px; /* Aumentado un poco para dar espacio al icono */
-  position: relative;
-}
-
-.list-icon {
-  position: absolute;
-  left: 0;
-  top: 2px;
-  color: var(--accent);
-  font-size: 0.9em;
-}
-
-/* Separador entre proyectos */
-hr {
-  border: 0;
-  height: 1px;
-  background: #e5e7eb;
-  margin: 2rem 0;
-}
-
-/* --- Botones y Enlaces --- */
+/* --- Botones --- */
 .btn-group {
   display: flex;
   gap: 12px;
@@ -202,7 +156,7 @@ hr {
   background: var(--primary);
   color: white;
   padding: 0.6rem 1.2rem;
-  border-radius: 6px; /* Botones un poco más cuadrados, más modernos */
+  border-radius: 6px;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
@@ -214,15 +168,10 @@ hr {
   transform: translateY(-1px);
 }
 
-.btn-dark {
-  background: #374151;
-}
+.btn-dark { background: #374151; }
+.btn-dark:hover { background: #1f2937; }
 
-.btn-dark:hover {
-  background: #1f2937;
-}
-
-/* --- Tablas (Education / Soccer) --- */
+/* --- Tablas --- */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -248,18 +197,9 @@ th {
   letter-spacing: 0.5px;
 }
 
-tr:last-child td {
-  border-bottom: none;
-}
+tr:last-child td { border-bottom: none; }
 
-.table-subtext {
-  font-size: 0.85em;
-  color: var(--text-muted);
-  display: block;
-  margin-top: 2px;
-}
-
-/* --- Galerias (Logos y Fotos) --- */
+/* --- Galerías --- */
 .logos-grid {
   display: flex;
   justify-content: center;
@@ -269,7 +209,7 @@ tr:last-child td {
 }
 
 .logos-grid img {
-  height: 60px; /* Ajustado para que no sean gigantes */
+  height: 60px;
   width: auto;
   object-fit: contain;
   filter: grayscale(100%);
@@ -298,8 +238,23 @@ tr:last-child td {
   transition: transform 0.3s;
 }
 
-.photo-grid img:hover {
-  transform: scale(1.02);
+.photo-grid img:hover { transform: scale(1.02); }
+
+/* --- Video --- */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 /* --- Footer --- */
@@ -313,30 +268,15 @@ footer {
   border-top: 1px solid #eee;
 }
 
-/* --- Mobile Responsiveness --- */
+/* --- Mobile --- */
 @media (max-width: 600px) {
-  nav {
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-  }
-  
-  .hero-title {
-    font-size: 1.8rem;
-  }
-  
-  .btn-group {
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .btn-link {
-    width: 100%;
-    justify-content: center;
-  }
-  
-  th, td {
-    padding: 0.75rem 0.5rem;
-    font-size: 0.85rem;
-  }
+  nav { flex-direction: column; gap: 1rem; padding: 1rem; }
+  .btn-group { flex-direction: column; width: 100%; }
+  .btn-link { width: 100%; justify-content: center; }
+  th, td { padding: 0.75rem 0.5rem; font-size: 0.85rem; }
+}
+.text-center { text-align: center; }
+
+.btn-group.centered {
+  justify-content: center;
 }
